@@ -26,6 +26,7 @@ The `class` should vary depending on the widget you would like to render:
 - **Comparison Table**: `class="tw-comparison-table"`
 
 **Mandatory href query parameters**
+
 Specify in the `href` query parameters the **sendAmount**, **sourceCurrency** and **targetCurrency** to be compared.
 
 **Optional parameters**
