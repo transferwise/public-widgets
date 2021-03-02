@@ -146,7 +146,7 @@ You can configure the table to behave differently using the following optional p
 - `data-provider-country`: `string` ISO 3166-1 alpha-2. Filters by provider country. i.e the country which the provider belongs to (e.g Natwest - GB, ANZ - AU). This property is also useful for only showing national banks, rather than "global" providers (like Western Union, Moneygram, etc).
 - `data-max-visible-providers`: `number` by default shows 3 providers and the rest are hidden under 'Show more providers' link.
 - `data-expand-disclaimer`: `boolean`. Setting to true will render the table with the disclaimer already opened and scrolls the element into the visible area of the browser window.
-- `data-affiliate-link`: `string` Your [affiliate tracking link](https://wise.com/gb/affiliate-program/). This will determine where users are sent when the click the Send Money CTA.
+- `data-affiliate-link`: `string` Your [affiliate tracking link](https://wise.com/gb/affiliate-program/). This will determine where users are sent when they click the Send Money CTA.
 
 Examples of possible configurations are provided at the end of this guide.
 
@@ -193,3 +193,4 @@ To render a static comparison table in English, showing quotes for sending 1500 
 
 ### Known limitations
 - It's currently only possible to render a single comparison widget per page.
+- It's not possible to carry over the selected currencies from the calculator onto the Wise homepage when the user clicks through to wise.com from the widget.
