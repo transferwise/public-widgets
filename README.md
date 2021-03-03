@@ -9,11 +9,11 @@ There are two available widgets:
 
 The default calculator looks like this:
 
-![Wise calculator widget](https://github.com/transferwise/public-widgets/blob/master/img/calculator-1.png)
+![Wise calculator widget](img/calculator-1.png)
 
 The default comparison table looks like this:
 
-![Wise comparison widget](https://github.com/transferwise/public-widgets/blob/master/img/comparison-1.png)
+![Wise comparison widget](img/comparison-1.png)
 
 ## Adding the calculator widget to your site
 
@@ -93,7 +93,7 @@ var height = "240px";
 /* Do not modify the code below */
 ```
 
-![Wise calculator widget](https://github.com/transferwise/public-widgets/blob/master/img/calculator-2.png)
+![Wise calculator widget](img/calculator-2.png)
 
 GBP to INR in English with custom CTA button and full quote breakdown:
 ```javascript
@@ -111,7 +111,7 @@ var height = "470px";
 /* Do not modify the code below */
 ```
 
-![Wise calculator widget](https://github.com/transferwise/public-widgets/blob/master/img/calculator-3.png)
+![Wise calculator widget](img/calculator-3.png)
 
 ## Adding the comparison widget to your site
 
@@ -179,7 +179,7 @@ To render a full comparison table in Spanish, showing quotes for sending 850 GBP
 >El verdadero costo de enviar GBP a USD</a>
 ```
 
-![Wise comparison widget](https://github.com/transferwise/public-widgets/blob/master/img/comparison-2.png)
+![Wise comparison widget](img/comparison-2.png)
 
 To render a static comparison table in English, showing quotes for sending 1500 GBP to USD, you'd configure the HTML as follows:
 ```html
@@ -189,7 +189,7 @@ To render a static comparison table in English, showing quotes for sending 1500 
 >The true cost of sending GBP to USD</a>
 ```
 
-![Wise comparison widget](https://github.com/transferwise/public-widgets/blob/master/img/comparison-3.png)
+![Wise comparison widget](img/comparison-3.png)
 
 ### Known limitations
 - It's currently only possible to render a single comparison widget per page.
