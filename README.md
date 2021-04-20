@@ -160,7 +160,7 @@ Add the following JavaScript code to your page immediately before the closing `<
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "https://widgets.transferwise.com/widgets.js";
+    js.src = "https://widgets.wise.com/widgets.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, "script", "transferwise-wjs"));
 })();
