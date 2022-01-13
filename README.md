@@ -45,7 +45,7 @@ Add the following JavaScript code to your page immediately before the closing `<
     var width = "580px";
     var height = "470px";
     /* Do not modify the code below */
-    var redirectUrlParams = encodeURIComponent("https://wise.com?sourceCurrency=" + sourceCurrencyCode + "&targetCurrency=" + targetCurrencyCode + "&fromCalcWidget=true&sourceAmount=" + sourceAmount);
+    var redirectUrlParams = encodeURIComponent("https://wise.com/");
     var redirectUrl = encodeURIComponent(affiliateLink + "?u=" + redirectUrlParams);
     var wiseIframeUrl =
       "https://wise.com/widget/calculator?sourceCurrencyCode=" + sourceCurrencyCode + "&targetCurrencyCode=" + targetCurrencyCode + "&amount=" + sourceAmount + "&cta=" + callToActionLabel + "&hideCta=" + hideCta + "&hideDetails=" + hideDetails + "&redirectUrl=" + redirectUrl + "&lang=" + lang + "&theme=light"
