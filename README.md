@@ -193,4 +193,3 @@ To render a static comparison table in English, showing quotes for sending 1500 
 
 ### Known limitations
 - It's currently only possible to render a single comparison widget per page.
-- It's not possible to carry over the selected currencies from the calculator onto the Wise homepage when the user clicks through to wise.com from the widget.
