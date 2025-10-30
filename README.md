@@ -1,34 +1,63 @@
 # Wise Public Widgets
 
-The Wise public widgets provide an easy way to embed rich, interactive content onto your website. All the Wise widgets feature powerful configuration options to enable you to tailor their functionality to suit your audience. By including your [personal affiliate link](https://wise.com/gb/affiliate-program/) in the code, it's also possible to use the widgets to generate commission from visitors to your website.
+> **Quick Start**: New to web development? Jump to our [Step-by-Step Guide](#quick-start-guide) below.
 
-There are two available widgets:
+The Wise public widgets provide an easy way to embed rich, interactive content onto your website. These widgets help your visitors compare money transfer options and calculate exchange rates, while you can earn commission through the [Wise affiliate program](https://wise.com/gb/affiliate-program/).
 
-- **Calculator**: A currency exchange calculator with route selection, real-time exchange rate, and a transfer quote.
-- **Comparison**: A money transfer comparison table, with or without selectors for the route and amount.
+## What You Can Embed
 
-The default calculator looks like this:
+There are two widgets available:
+
+### 📊 Calculator Widget
+Interactive currency exchange calculator showing real-time rates and transfer quotes.
 
 ![Wise calculator widget](img/calculator-1.png)
 
-The default comparison table looks like this:
+**Perfect for**: Currency conversion tools, travel blogs, expat websites
+
+### 📋 Comparison Widget
+Money transfer comparison table showing multiple providers and their fees.
 
 ![Wise comparison widget](img/comparison-1.png)
 
-## Adding the calculator widget to your site
+**Perfect for**: Financial advice sites, money transfer guides, comparison pages
 
-### 1. Add the HTML tag
+---
 
-Place the following code onto your page where you want the calculator widget to appear:
+## Quick Start Guide
+
+**Prerequisites**: Basic HTML knowledge and access to edit your website's code.
+
+### Choose Your Widget:
+- **Want a calculator?** → [Calculator Setup](#adding-the-calculator-widget-to-your-site)
+- **Want a comparison table?** → [Comparison Setup](#adding-the-comparison-widget-to-your-site)
+- **Not sure?** → Try the calculator first (it's easier to implement)
+
+### Testing Your Implementation:
+1. After adding the code, refresh your webpage
+2. The widget should load within a few seconds
+3. Try interacting with it to ensure it works properly
+4. **Having issues?** Check our [Troubleshooting](#troubleshooting) section below
+
+---
+
+## Adding the Calculator Widget to Your Site
+
+The calculator widget requires two pieces of code: an HTML container and a JavaScript snippet. Don't worry - you can copy and paste both!
+
+### Step 1: Add the HTML Container
+
+First, place this HTML code where you want the calculator to appear on your page:
+
 ```html
 <div id="wise-calc-widget">
-<!-- calculator will be rendered here -->
+    <!-- The calculator will appear here automatically -->
 </div>
 ```
 
-### 2. Add the calculator script tag
+### Step 2: Add the JavaScript Code
 
-Add the following JavaScript code to your page immediately before the closing `</body>` tag:
+Next, add this JavaScript code **just before the closing `</body>` tag** in your HTML page:
 ```html
 <script type="text/javascript">
 (function() {
@@ -56,9 +85,9 @@ Add the following JavaScript code to your page immediately before the closing `<
 </script>
 ```
 
-### 3. Configure the script tag
+### Step 3: Customize Your Calculator (Optional)
 
-Note the variables at the start of the script tag above. These can be changed to suit your requirements, according to the table below. Examples of various setups are shown later in this guide.
+The calculator works with default settings, but you can customize it by changing the variables at the top of the JavaScript code. Here's what each setting does:
 
 | Variable           | Description                                     | Example                                     |
 |--------------------|-------------------------------------------------|---------------------------------------------|
@@ -73,7 +102,7 @@ Note the variables at the start of the script tag above. These can be changed to
 | `width`              | Sets the width of the calculator widget         | `"580px"`                                       |
 | `height`             | Sets the height of the calculator widget        | `"470px"`                                       |
 
-Note the default `width` and `height` settings (580px wide x 470px high) assume you have `details` set to true. If `details` is set to false, the `height` of the widget container can be reduced accordingly (580px wide x 240px high).
+Note the default `width` and `height` settings (580px wide x 470px high) assume you have `hideDetails` set to false (showing full details). If `hideDetails` is set to true, you can reduce the `height` of the widget container (we recommend 580px wide x 340px high for hidden details).
 
 ### Examples
 
@@ -89,7 +118,7 @@ var hideDetails = true;
 var affiliateLink = "https://wise.prf.hn/click/camref:11001XXXX";
 var lang = "es";
 var width = "580px";
-var height = "240px";
+var height = "340px";
 /* Do not modify the code below */
 ```
 
@@ -193,3 +222,72 @@ To render a static comparison table in English, showing quotes for sending 1500 
 
 ### Known limitations
 - It's currently only possible to render a single comparison widget per page.
+
+---
+
+## Troubleshooting
+
+### Widget Not Loading?
+1. **Check your internet connection** - Widgets load from Wise's servers
+2. **Verify your HTML structure** - Make sure the container div has the correct ID
+3. **Check JavaScript placement** - The script should be before the closing `</body>` tag
+4. **Look for JavaScript errors** - Open browser developer tools (F12) and check the Console tab
+
+### Calculator Shows Blank Space?
+- **Check currency codes** - Use 3-letter currency codes (USD, EUR, GBP, etc.)
+- **Verify affiliate link format** - Make sure your affiliate link is valid
+- **Check widget dimensions** - Ensure width/height values include "px"
+
+### Comparison Table Not Appearing?
+- **Verify the class name** - Use `tw-comparison` or `tw-comparison-table`
+- **Check the href URL** - Ensure the comparison URL is properly formatted
+- **Wait for loading** - Comparison tables can take 3-5 seconds to load
+
+### Comparison Widget Has Double Borders?
+- **Remove extra containers** - Don't wrap the `<a>` tag in divs with borders or shadows
+- **Avoid conflicting CSS** - The widget has its own styling; extra containers can create double borders
+- **Use minimal HTML** - Just use the `<a>` tag as shown in the examples above
+
+### Still Having Issues?
+1. Try our [test page](test-widgets.html) to see working examples
+2. Compare your code with the examples in this guide
+3. Check that you haven't modified the "Do not modify" sections
+
+---
+
+## Advanced Configuration
+
+### Multiple Calculators on One Page
+To add multiple calculator widgets, change the container ID and iframe ID for each widget:
+
+```html
+<!-- First calculator -->
+<div id="wise-calc-widget-1"></div>
+
+<!-- Second calculator -->
+<div id="wise-calc-widget-2"></div>
+```
+
+Then modify the JavaScript to target different containers:
+```javascript
+document.getElementById("wise-calc-widget-1").appendChild(wiseIframe);
+// and for the second:
+document.getElementById("wise-calc-widget-2").appendChild(wiseIframe2);
+```
+
+### Responsive Design
+The widgets work on mobile devices, but you may want to adjust dimensions:
+
+```javascript
+// Mobile-friendly dimensions
+var width = "100%";    // Full width
+var height = "400px";  // Shorter height for mobile
+```
+
+---
+
+## Need More Help?
+
+- **Wise Affiliate Program**: [Learn about earning commissions](https://wise.com/gb/affiliate-program/)
+- **Widget Support**: Contact the Wise affiliate team for technical assistance
+- **Currency Codes**: [ISO 4217 currency code list](https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes)
