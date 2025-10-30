@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Calculator Demo - Wise Widgets</title>
+    <link rel="icon" href="https://wise.com/public-resources/assets/logos/logo-square.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2e4369;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #00b9ff;
+            font-weight: 600;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2e4369;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: #00b9ff;
+            color: white;
+        }
+
+        .breadcrumb {
+            background: #e3f2fd;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-content {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #00b9ff;
+            text-decoration: none;
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .demo-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2e4369;
+        }
+
+        .demo-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .widget-demo {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .config-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .config-info h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .config-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            list-style: none;
+        }
+
+        .config-list li {
+            color: #856404;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: #e8f4fd;
+            border: 1px solid #b3d7ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .highlight-box h4 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .code-section {
+            margin-top: 40px;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .code-title {
+            font-size: 1.5rem;
+            color: #2e4369;
+        }
+
+        .copy-btn {
+            background: #00b9ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #0088cc;
+        }
+
+        .code-block {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .code-block pre {
+            border-radius: 8px;
+            margin: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #00b9ff;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            margin: 30px 0 15px 0;
+            color: #2e4369;
+        }
+
+        .navigation {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .nav-item {
+            display: block;
+            text-decoration: none;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            border-color: #00b9ff;
+            background: #f0f9ff;
+        }
+
+        .nav-item h4 {
+            color: #2e4369;
+            margin-bottom: 8px;
+        }
+
+        .nav-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-section {
+                padding: 20px;
+            }
+
+            .demo-title {
+                font-size: 2rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .config-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://wise.com/public-resources/assets/logos/logo-square.svg" alt="Wise">
+                    <span>Wise Widgets</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html">← All Demos</a>
+                    <a href="https://github.com/transferwise/public-widgets" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="index.html">Home</a> / Calculator Widgets / Compact Calculator
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="demo-section">
+                <div class="demo-header">
+                    <h1 class="demo-title">Compact Calculator Widget</h1>
+                    <p class="demo-description">
+                        A space-saving calculator showing USD to MXN conversion in Spanish with hidden details.
+                        Perfect for sidebars, mobile layouts, or when space is limited.
+                    </p>
+                </div>
+
+                <div class="widget-demo">
+                    <div id="wise-calc-widget">
+                        <!-- Calculator will be rendered here -->
+                    </div>
+                </div>
+
+                <div class="config-info">
+                    <h3>🔧 Widget Configuration</h3>
+                    <ul class="config-list">
+                        <li><strong>Source Currency:</strong> USD (US Dollar)</li>
+                        <li><strong>Target Currency:</strong> MXN (Mexican Peso)</li>
+                        <li><strong>Default Amount:</strong> 1,500 USD</li>
+                        <li><strong>Language:</strong> Spanish (es)</li>
+                        <li><strong>Details:</strong> Hidden (compact view)</li>
+                        <li><strong>CTA Button:</strong> "Empieza" (Start)</li>
+                        <li><strong>Dimensions:</strong> 580px × 340px</li>
+                        <li><strong>Theme:</strong> Light</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💡 Perfect For:</h4>
+                    <ul style="margin-left: 20px; color: #0056b3;">
+                        <li>Spanish-speaking audiences targeting Mexico</li>
+                        <li>Sidebars and smaller widget areas</li>
+                        <li>Mobile-optimized layouts</li>
+                        <li>Quick conversion tools without detailed breakdown</li>
+                    </ul>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h2 class="code-title">Implementation Code</h2>
+                        <button class="copy-btn" onclick="copyAllCode()">Copy All Code</button>
+                    </div>
+
+                    <div class="step-title">
+                        <span class="step-number">1</span>Add HTML Container
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-html">&lt;div id="wise-calc-widget"&gt;
+    &lt;!-- Calculator will be rendered here --&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <div class="step-title">
+                        <span class="step-number">2</span>Add JavaScript Code (before closing &lt;/body&gt; tag)
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-html">&lt;script type="text/javascript"&gt;
+(function() {
+  window.onload = function() {
+    /* Change the variables below */
+    var sourceCurrencyCode = "USD";
+    var targetCurrencyCode = "MXN";
+    var sourceAmount = 1500;
+    var callToActionLabel = "Empieza";
+    var hideCta = false;
+    var hideDetails = true;
+    var affiliateLink = "YOUR_TRACKING_LINK";
+    var lang = "es";
+    var width = "580px";
+    var height = "340px";
+    /* Do not modify the code below */
+    var redirectUrlParams = encodeURIComponent("https://wise.com/");
+    var redirectUrl = encodeURIComponent(affiliateLink + "?u=" + redirectUrlParams);
+    var wiseIframeUrl =
+      "https://wise.com/widget/calculator?sourceCurrencyCode=" + sourceCurrencyCode +
+      "&targetCurrencyCode=" + targetCurrencyCode + "&amount=" + sourceAmount +
+      "&cta=" + callToActionLabel + "&hideCta=" + hideCta + "&hideDetails=" + hideDetails +
+      "&redirectUrl=" + redirectUrl + "&lang=" + lang + "&theme=light"
+    var wiseIframe = document.createElement('iframe');
+    wiseIframe.frameBorder = 0;
+    wiseIframe.width = width;
+    wiseIframe.height = height;
+    wiseIframe.id = "wise-calc";
+    wiseIframe.scrolling = "no";
+    wiseIframe.setAttribute("allowtransparency", "true");
+    wiseIframe.setAttribute("src", wiseIframeUrl);
+    document.getElementById("wise-calc-widget").appendChild(wiseIframe);
+  };
+})();
+&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <div class="step-title">
+                        <span class="step-number">3</span>Key Settings for Compact View
+                    </div>
+                    <div class="highlight-box">
+                        <h4>Important Configuration Notes:</h4>
+                        <ul style="margin-left: 20px; color: #0056b3;">
+                            <li><strong>hideDetails: true</strong> - Reduces widget height and removes fee breakdown</li>
+                            <li><strong>height: "340px"</strong> - Optimal height for compact mode (vs 470px for full)</li>
+                            <li><strong>lang: "es"</strong> - Spanish language for Mexican peso audience</li>
+                            <li><strong>Replace YOUR_TRACKING_LINK</strong> with your affiliate link</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="navigation">
+                <div class="nav-grid">
+                    <a href="calculator-default.html" class="nav-item">
+                        <h4>← Previous: Default Calculator</h4>
+                        <p>AUD → USD with full details</p>
+                    </a>
+                    <a href="calculator-detailed.html" class="nav-item">
+                        <h4>Next: Detailed Calculator →</h4>
+                        <p>GBP → INR with custom CTA</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Widget JavaScript -->
+    <script type="text/javascript">
+    (function() {
+      window.onload = function() {
+        /* Change the variables below */
+        var sourceCurrencyCode = "USD";
+        var targetCurrencyCode = "MXN";
+        var sourceAmount = 1500;
+        var callToActionLabel = "Empieza";
+        var hideCta = false;
+        var hideDetails = true;
+        var affiliateLink = "https://wise.com/";
+        var lang = "es";
+        var width = "580px";
+        var height = "340px";
+        /* Do not modify the code below */
+        var redirectUrlParams = encodeURIComponent("https://wise.com/");
+        var redirectUrl = encodeURIComponent(affiliateLink + "?u=" + redirectUrlParams);
+        var wiseIframeUrl =
+          "https://wise.com/widget/calculator?sourceCurrencyCode=" + sourceCurrencyCode + "&targetCurrencyCode=" + targetCurrencyCode + "&amount=" + sourceAmount + "&cta=" + callToActionLabel + "&hideCta=" + hideCta + "&hideDetails=" + hideDetails + "&redirectUrl=" + redirectUrl + "&lang=" + lang + "&theme=light"
+        var wiseIframe = document.createElement('iframe');
+        wiseIframe.frameBorder = 0;
+        wiseIframe.width = width;
+        wiseIframe.height = height;
+        wiseIframe.id = "wise-calc";
+        wiseIframe.scrolling = "no";
+        wiseIframe.setAttribute("allowtransparency", "true");
+        wiseIframe.setAttribute("src", wiseIframeUrl);
+        document.getElementById("wise-calc-widget").appendChild(wiseIframe);
+      };
+    })();
+
+    function copyAllCode() {
+        const htmlCode = `<div id="wise-calc-widget">
+    <!-- Calculator will be rendered here -->
+</div>`;
+
+        const jsCode = `<script type="text/javascript">
+(function() {
+  window.onload = function() {
+    /* Change the variables below */
+    var sourceCurrencyCode = "USD";
+    var targetCurrencyCode = "MXN";
+    var sourceAmount = 1500;
+    var callToActionLabel = "Empieza";
+    var hideCta = false;
+    var hideDetails = true;
+    var affiliateLink = "YOUR_TRACKING_LINK";
+    var lang = "es";
+    var width = "580px";
+    var height = "340px";
+    /* Do not modify the code below */
+    var redirectUrlParams = encodeURIComponent("https://wise.com/");
+    var redirectUrl = encodeURIComponent(affiliateLink + "?u=" + redirectUrlParams);
+    var wiseIframeUrl =
+      "https://wise.com/widget/calculator?sourceCurrencyCode=" + sourceCurrencyCode + "&targetCurrencyCode=" + targetCurrencyCode + "&amount=" + sourceAmount + "&cta=" + callToActionLabel + "&hideCta=" + hideCta + "&hideDetails=" + hideDetails + "&redirectUrl=" + redirectUrl + "&lang=" + lang + "&theme=light"
+    var wiseIframe = document.createElement('iframe');
+    wiseIframe.frameBorder = 0;
+    wiseIframe.width = width;
+    wiseIframe.height = height;
+    wiseIframe.id = "wise-calc";
+    wiseIframe.scrolling = "no";
+    wiseIframe.setAttribute("allowtransparency", "true");
+    wiseIframe.setAttribute("src", wiseIframeUrl);
+    document.getElementById("wise-calc-widget").appendChild(wiseIframe);
+  };
+})();
+<\/script>`;
+
+        const fullCode = htmlCode + '\n\n' + jsCode;
+
+        navigator.clipboard.writeText(fullCode).then(function() {
+            const btn = document.querySelector('.copy-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        });
+    }
+    </script>
+</body>
+</html>
