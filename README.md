@@ -1,6 +1,6 @@
 # Wise Public Widgets
 
-> **🚀 [View Live Demos](https://transferwise.github.io/public-widgets/)** | **Quick Start**: New to web development? Jump to our [Step-by-Step Guide](#quick-start-guide) below.
+**Quick Start**: New to web development? Jump to our [Step-by-Step Guide](#quick-start-guide) below.
 
 The Wise public widgets provide an easy way to embed rich, interactive content onto your website. These widgets help your visitors compare money transfer options and calculate exchange rates, while you can earn commission through the [Wise affiliate program](https://wise.com/gb/affiliate-program/).
 
@@ -15,16 +15,12 @@ Interactive currency exchange calculator showing real-time rates and transfer qu
 
 **Perfect for**: Currency conversion tools, travel blogs, expat websites
 
-**[📱 Try Live Demo →](https://transferwise.github.io/public-widgets/calculator-default.html)**
-
 ### 📋 Comparison Widget
 Money transfer comparison table showing multiple providers and their fees.
 
 ![Wise comparison widget](img/comparison-1.png)
 
 **Perfect for**: Financial advice sites, money transfer guides, comparison pages
-
-**[📱 Try Live Demo →](https://transferwise.github.io/public-widgets/comparison-full.html)**
 
 ---
 
@@ -253,9 +249,8 @@ To render a static comparison table in English, showing quotes for sending 1500 
 - **Use minimal HTML** - Just use the `<a>` tag as shown in the examples above
 
 ### Still Having Issues?
-1. Check our [live demos](https://transferwise.github.io/public-widgets/) to see working examples with code
-2. Compare your code with the examples in this guide
-3. Check that you haven't modified the "Do not modify" sections
+1. Compare your code with the examples in this guide
+2. Check that you haven't modified the "Do not modify" sections
 
 ---
 
